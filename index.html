@@ -359,5 +359,144 @@ function renderTable(){
   verdictEl.innerHTML = head + body;
 }
 </script>
+
+<!-- Supabase 연결 -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+/* =========================
+   Supabase 설정
+========================= */
+
+const SUPABASE_URL = 'https://cywjewdamlydpjoqfiac.supabase.co';
+
+const SUPABASE_KEY =
+  'sb_publishable_yJkK_e1iHJsdmHVtoCXekg_kE0bq92U';
+
+const supabaseClient = supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_KEY
+);
+
+
+/* =========================
+   참여자 번호 설정
+========================= */
+
+let participantId = sessionStorage.getItem('participant_id');
+
+if (!participantId) {
+
+  participantId = prompt(
+    '참여자 번호를 입력해주세요.\n예: P1'
+  );
+
+  if (!participantId) {
+    participantId = 'TEST';
+  }
+
+  participantId = participantId.trim().toUpperCase();
+
+  sessionStorage.setItem(
+    'participant_id',
+    participantId
+  );
+}
+
+
+/* =========================
+   기존 saveRecord 함수 보관
+========================= */
+
+const originalSaveRecord = saveRecord;
+
+
+/* =========================
+   saveRecord 확장
+   기존 기록 + Supabase 저장
+========================= */
+
+saveRecord = function(sec, words) {
+
+  /* 기존 말해봐 기능 실행 */
+  originalSaveRecord(sec, words);
+
+
+  /* 현재 질문 정보 */
+  const currentQuestion = cur();
+
+  /* 방금 저장된 회차 번호 */
+  const attemptNo = records[qIndex].length;
+
+
+  /* 질문 유형 구분 */
+  let questionType = '기타';
+
+  if (currentQuestion.target === 60) {
+
+    questionType = '자기소개';
+
+  } else if (currentQuestion.target === 90) {
+
+    questionType = '경험질문';
+
+  } else if (currentQuestion.target === 30) {
+
+    questionType = '단답';
+
+  }
+
+
+  /* Supabase에 저장할 원자료 */
+  const logData = {
+
+    participant_id: participantId,
+
+    mvp_version: 3,
+
+    question_id: `Q${qIndex + 1}`,
+
+    question_type: questionType,
+
+    attempt_no: attemptNo,
+
+    duration_sec: Number(sec.toFixed(2)),
+
+    target_sec: currentQuestion.target,
+
+    word_count: words === null ? null : words
+
+  };
+
+
+  /* Supabase 저장 */
+  supabaseClient
+    .from('answer_logs')
+    .insert(logData)
+
+    .then(({ data, error }) => {
+
+      if (error) {
+
+        console.error(
+          '❌ Supabase 저장 실패:',
+          error
+        );
+
+      } else {
+
+        console.log(
+          '✅ Supabase 저장 성공:',
+          logData
+        );
+
+      }
+
+    });
+
+};
+
+</script>
+
 </body>
 </html>
