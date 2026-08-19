@@ -8,7 +8,6 @@
 <title>말해봐 · 3차 MVP</title>
 
 <style>
-
 :root{
   --ink:#171512;
   --paper:#FBF9F4;
@@ -17,7 +16,6 @@
   --signal:#C4442E;
   --ok:#3E7C5A;
   --card:#FFFFFF;
-  --live:#C4442E;
 }
 
 *{
@@ -30,7 +28,6 @@ body{
   font-family:"Pretendard","Malgun Gothic",-apple-system,sans-serif;
   background:var(--paper);
   color:var(--ink);
-  -webkit-font-smoothing:antialiased;
   min-height:100vh;
 }
 
@@ -51,17 +48,15 @@ header{
 .logo{
   font-size:30px;
   font-weight:800;
-  letter-spacing:-1px;
 }
 
 .badge{
   font-size:11px;
   font-weight:700;
-  color:#fff;
+  color:white;
   background:var(--signal);
   padding:3px 8px;
-  border-radius:2px;
-  letter-spacing:.5px;
+  border-radius:3px;
 }
 
 .tag{
@@ -71,53 +66,32 @@ header{
 }
 
 .qlabel{
+  margin:26px 0 12px;
   font-size:12px;
   font-weight:700;
   color:var(--muted);
-  letter-spacing:1.5px;
-  text-transform:uppercase;
-  margin:26px 0 12px;
 }
 
 .question{
   font-size:26px;
   font-weight:700;
   line-height:1.4;
-  letter-spacing:-.5px;
 }
 
 .qcount{
+  margin-top:10px;
   font-size:13px;
   color:var(--muted);
-  margin-top:10px;
 }
 
 .target-row{
-  display:flex;
-  align-items:center;
-  gap:10px;
   margin-top:14px;
-  flex-wrap:wrap;
-}
-
-.qtype{
-  font-size:11px;
-  font-weight:700;
-  padding:3px 9px;
-  border-radius:3px;
-  background:var(--ink);
-  color:#fff;
-  letter-spacing:.5px;
-}
-
-.target-txt{
   font-size:14px;
   color:var(--muted);
 }
 
-.target-txt b{
+.target-row b{
   color:var(--ink);
-  font-variant-numeric:tabular-nums;
 }
 
 .gauge{
@@ -129,20 +103,20 @@ header{
   margin:16px 0 6px;
 }
 
-.gauge .band{
+.band{
   position:absolute;
   top:0;
   bottom:0;
   background:#D9E7DF;
 }
 
-.gauge .now{
+.now{
   position:absolute;
+  left:0;
   top:0;
   bottom:0;
-  left:0;
+  width:0;
   background:var(--ink);
-  transition:width .12s;
 }
 
 .gauge.over .now{
@@ -159,8 +133,8 @@ header{
 .mic-row{
   display:flex;
   align-items:center;
-  gap:14px;
-  margin:24px 0 4px;
+  gap:12px;
+  margin-top:24px;
 }
 
 .dot{
@@ -168,17 +142,16 @@ header{
   height:12px;
   border-radius:50%;
   background:var(--line);
-  flex:0 0 auto;
 }
 
 .dot.live{
-  background:var(--live);
+  background:var(--signal);
   animation:pulse 1s infinite;
 }
 
 @keyframes pulse{
-  0%,100%{opacity:1}
-  50%{opacity:.3}
+  0%,100%{opacity:1;}
+  50%{opacity:.3;}
 }
 
 .mic-status{
@@ -187,40 +160,37 @@ header{
 }
 
 .meter{
+  margin-top:14px;
   height:8px;
   background:var(--line);
-  border-radius:4px;
+  border-radius:5px;
   overflow:hidden;
-  margin:14px 0 4px;
 }
 
-.meter .fill{
-  height:100%;
+.meter-fill{
   width:0;
+  height:100%;
   background:var(--ink);
-  transition:width .08s;
 }
 
 .timer{
-  font-variant-numeric:tabular-nums;
+  margin-top:24px;
   font-size:80px;
   font-weight:800;
-  letter-spacing:-3px;
   line-height:1;
-  margin:24px 0 4px;
+  font-variant-numeric:tabular-nums;
 }
 
 .timer small{
   font-size:24px;
-  font-weight:600;
   color:var(--muted);
-  margin-left:6px;
 }
 
 .hint{
+  margin-top:8px;
+  min-height:20px;
   font-size:14px;
   color:var(--muted);
-  min-height:20px;
 }
 
 .controls{
@@ -230,46 +200,39 @@ header{
 }
 
 button{
-  font-family:inherit;
-  font-size:17px;
-  font-weight:700;
-  cursor:pointer;
   border:none;
   border-radius:6px;
-  padding:18px 20px;
-  flex:1;
-  transition:.12s;
-}
-
-.btn-primary{
-  background:var(--ink);
-  color:#fff;
-}
-
-.btn-primary:hover{
-  transform:translateY(-1px);
-}
-
-.btn-ghost{
-  background:transparent;
-  border:1.5px solid var(--line);
-  color:var(--ink);
-  flex:0 0 auto;
-  padding:18px 22px;
+  padding:17px 20px;
+  font-family:inherit;
+  font-size:16px;
+  font-weight:700;
+  cursor:pointer;
 }
 
 button:disabled{
-  opacity:.35;
+  opacity:.4;
   cursor:not-allowed;
 }
 
+.btn-main{
+  flex:1;
+  background:var(--ink);
+  color:white;
+}
+
+.btn-next{
+  background:white;
+  color:var(--ink);
+  border:1px solid var(--line);
+}
+
 .result{
+  display:none;
   margin-top:26px;
+  padding:20px;
+  background:white;
   border:1px solid var(--line);
   border-radius:10px;
-  background:var(--card);
-  padding:20px 22px;
-  display:none;
 }
 
 .result.show{
@@ -277,33 +240,22 @@ button:disabled{
 }
 
 .result h3{
+  margin-bottom:14px;
   font-size:12px;
-  letter-spacing:1.5px;
-  text-transform:uppercase;
   color:var(--muted);
-  margin-bottom:16px;
 }
 
 table{
   width:100%;
   border-collapse:collapse;
-  font-variant-numeric:tabular-nums;
 }
 
 th,
 td{
-  text-align:right;
-  padding:9px 8px;
-  font-size:14px;
+  padding:9px 6px;
   border-bottom:1px solid var(--line);
-}
-
-th{
-  font-size:11px;
-  color:var(--muted);
-  text-transform:uppercase;
-  letter-spacing:.5px;
-  font-weight:700;
+  font-size:13px;
+  text-align:right;
 }
 
 th:first-child,
@@ -318,26 +270,26 @@ tr.latest td{
 .verdict{
   margin-top:16px;
   font-size:14px;
-  line-height:1.55;
+  line-height:1.6;
 }
 
-.verdict b{
-  color:var(--ok);
-}
-
-.verdict .warn{
+.warn{
   color:var(--signal);
+}
+
+.landed{
+  color:var(--ok);
+  font-weight:700;
 }
 
 .flag{
   display:inline-block;
+  margin-left:5px;
+  padding:2px 6px;
   font-size:11px;
-  font-weight:700;
-  padding:2px 7px;
   border-radius:3px;
   background:#F3E6E1;
   color:var(--signal);
-  margin-left:6px;
 }
 
 .flag.ok{
@@ -345,69 +297,37 @@ tr.latest td{
   color:var(--ok);
 }
 
-.landed{
-  display:inline-block;
-  font-size:11px;
-  font-weight:700;
-  padding:2px 7px;
-  border-radius:3px;
-  background:#E4EFE9;
-  color:var(--ok);
-  margin-left:6px;
-}
-
-.note{
-  font-size:12px;
-  color:var(--muted);
-  margin-top:8px;
-  line-height:1.5;
-}
-
-
-/* =========================
-   한줄평
-========================= */
-
+/* 한줄평 */
 #feedbackBox{
   display:none;
-  margin-top:28px;
+  margin-top:30px;
   padding:22px;
-  background:#fff;
+  background:white;
   border:1px solid var(--line);
   border-radius:10px;
 }
 
 #feedbackBox h3{
-  font-size:18px;
-  margin-bottom:10px;
-}
-
-#feedbackGuide{
-  font-size:14px;
-  color:var(--muted);
-  line-height:1.6;
-}
-
-#feedbackForm{
-  display:none;
+  margin-bottom:8px;
+  font-size:20px;
 }
 
 .feedback-desc{
-  font-size:13px;
-  color:var(--muted);
-  line-height:1.5;
   margin-bottom:14px;
+  font-size:13px;
+  line-height:1.6;
+  color:var(--muted);
 }
 
 #feedbackInput{
   width:100%;
   height:90px;
-  resize:vertical;
-  border:1px solid var(--line);
-  border-radius:6px;
   padding:12px;
+  resize:vertical;
   font-family:inherit;
   font-size:14px;
+  border:1px solid var(--line);
+  border-radius:6px;
 }
 
 .feedback-buttons{
@@ -417,675 +337,430 @@ tr.latest td{
 }
 
 .feedback-buttons button{
-  padding:15px 18px;
-}
-
-.feedback-skip{
-  background:#fff;
-  border:1px solid var(--line);
-  color:var(--muted);
+  flex:1;
 }
 
 #feedbackDone{
   display:none;
   color:var(--ok);
-  font-size:14px;
   font-weight:700;
 }
 
 footer{
+  padding-top:26px;
+  text-align:center;
   font-size:11px;
   color:var(--muted);
-  text-align:center;
-  padding-top:24px;
 }
-
 </style>
 </head>
-
 
 <body>
 
 <div class="wrap">
 
 <header>
-
-  <span class="logo">
-    말해봐
-  </span>
-
-  <span class="badge">
-    3차 MVP
-  </span>
-
-  <span class="tag">
-    질문 유형별 목표시간 · 안착 판정
-  </span>
-
+  <span class="logo">말해봐</span>
+  <span class="badge">3차 MVP</span>
+  <span class="tag">목표시간 · 안착 판정</span>
 </header>
 
+<div class="qlabel">예상 질문</div>
 
-<div class="qlabel">
-  예상 질문
-</div>
-
-
-<div
-  class="question"
-  id="question"
->
+<div class="question" id="question">
   자기소개 부탁드립니다.
 </div>
 
-
-<div
-  class="qcount"
-  id="qcount"
->
+<div class="qcount" id="qcount">
   질문 1 / 20
 </div>
 
-
 <div class="target-row">
-
-  <span
-    class="qtype"
-    id="qtype"
-  >
-    자기소개
-  </span>
-
-  <span class="target-txt">
-
-    목표
-
-    <b id="targetTxt">
-      60초
-    </b>
-
-    · 허용 ±10초
-
-  </span>
-
+  목표 <b id="targetTxt">60초</b> · 허용 ±10초
 </div>
 
-
-<div
-  class="gauge"
-  id="gauge"
->
-
-  <div
-    class="band"
-    id="band"
-  ></div>
-
-  <div
-    class="now"
-    id="now"
-  ></div>
-
+<div class="gauge" id="gauge">
+  <div class="band" id="band"></div>
+  <div class="now" id="now"></div>
 </div>
-
 
 <div class="gauge-lab">
-
-  <span>
-    0초
-  </span>
-
-  <span id="gaugeMax">
-    120초
-  </span>
-
+  <span>0초</span>
+  <span id="gaugeMax">120초</span>
 </div>
-
 
 <div class="mic-row">
-
-  <span
-    class="dot"
-    id="dot"
-  ></span>
-
-  <span
-    class="mic-status"
-    id="micStatus"
-  >
-    마이크 준비 안 됨
-  </span>
-
+  <span class="dot" id="dot"></span>
+  <span class="mic-status" id="micStatus">마이크 준비 안 됨</span>
 </div>
-
 
 <div class="meter">
-
-  <div
-    class="fill"
-    id="meter"
-  ></div>
-
+  <div class="meter-fill" id="meter"></div>
 </div>
 
-
-<div
-  class="timer"
-  id="timer"
->
+<div class="timer" id="timer">
   0<small>.0초</small>
 </div>
 
-
-<div
-  class="hint"
-  id="hint"
->
+<div class="hint" id="hint">
   준비되면 답변 시작을 누르세요.
 </div>
 
-
 <div class="controls">
 
-  <button
-    class="btn-primary"
-    id="mainBtn"
-  >
+  <button class="btn-main" id="mainBtn">
     답변 시작
   </button>
 
-  <button
-    class="btn-ghost"
-    id="nextBtn"
-  >
+  <button class="btn-next" id="nextBtn">
     다음 질문
   </button>
 
 </div>
 
+<div class="result" id="result">
 
-<div
-  class="result"
-  id="result"
->
+  <h3>회차별 기록</h3>
 
-<h3>
-  회차별 기록
-</h3>
+  <table>
 
-<table>
+    <thead>
+      <tr>
+        <th>회차</th>
+        <th>시간</th>
+        <th>목표</th>
+        <th>어절</th>
+        <th>속도</th>
+      </tr>
+    </thead>
 
-<thead>
+    <tbody id="tbody"></tbody>
 
-<tr>
+  </table>
 
-<th>회차</th>
-
-<th>발화시간</th>
-
-<th>목표 대비</th>
-
-<th>말한 분량</th>
-
-<th>속도</th>
-
-</tr>
-
-</thead>
-
-
-<tbody id="tbody"></tbody>
-
-</table>
-
-
-<div
-  class="verdict"
-  id="verdict"
-></div>
-
-
-<div class="note">
-
-질문 유형별 목표시간을 제시하고
-목표 ±10초 안에 안착했는지 확인합니다.
-
-</div>
+  <div class="verdict" id="verdict"></div>
 
 </div>
 
 
-
-<!-- =========================
-     한줄평 영역
-========================= -->
-
+<!-- 마지막 질문 완료 후 표시 -->
 <div id="feedbackBox">
 
-  <h3>
-    한줄평
-  </h3>
+  <h3>한줄평</h3>
 
-
-  <div id="feedbackGuide">
-
-    한줄평은 마지막 질문을 넘기면 입력할 수 있습니다.
-
+  <div class="feedback-desc">
+    테스트가 끝났습니다 👏<br>
+    사용해 본 느낌을 한줄로 남겨주세요.<br>
+    한줄평은 선택사항입니다.
   </div>
 
+  <textarea
+    id="feedbackInput"
+    maxlength="200"
+    placeholder="예: 목표시간이 있어서 답변 길이를 조절하기 쉬웠어요."
+  ></textarea>
 
-  <div id="feedbackForm">
+  <div class="feedback-buttons">
 
-    <div class="feedback-desc">
+    <button
+      class="btn-main"
+      id="feedbackSubmitBtn"
+      onclick="submitFeedback()"
+    >
+      한줄평 제출
+    </button>
 
-      테스트가 끝났습니다 👏<br>
-
-      사용해 본 느낌을 한줄로 남겨주세요.<br>
-
-      한줄평은 선택사항입니다.
-
-    </div>
-
-
-    <textarea
-      id="feedbackInput"
-      maxlength="200"
-      placeholder="예: 목표시간이 있어서 답변 길이를 조절하기 쉬웠어요."
-    ></textarea>
-
-
-    <div class="feedback-buttons">
-
-      <button
-        id="feedbackSubmitBtn"
-        class="btn-primary"
-        onclick="submitFeedback()"
-      >
-        한줄평 제출
-      </button>
-
-
-      <button
-        id="feedbackSkipBtn"
-        class="feedback-skip"
-        onclick="skipFeedback()"
-      >
-        건너뛰기
-      </button>
-
-    </div>
+    <button
+      class="btn-next"
+      id="feedbackSkipBtn"
+      onclick="skipFeedback()"
+    >
+      건너뛰기
+    </button>
 
   </div>
-
 
   <div id="feedbackDone">
-
     감사합니다! 테스트가 완료되었습니다.
-
   </div>
 
 </div>
-
 
 
 <footer>
-
-마이크 음성은 기기 안에서만 처리되며
-서버로 전송되지 않습니다.
-
+  마이크 음성은 기기에서 처리되며 원본 음성은 저장하지 않습니다.
 </footer>
 
 </div>
 
 
-
-<!-- =========================
-     말해봐 기본 기능
-========================= -->
-
 <script>
 
+/* ===============================
+   질문
+================================ */
 
 const QUESTIONS = [
 
-{
-  q:"자기소개 부탁드립니다.",
-  target:60,
-  type:"자기소개"
-},
+  {
+    q:"자기소개 부탁드립니다.",
+    target:60,
+    type:"자기소개"
+  },
 
-{
-  q:"우리 회사에 지원한 이유는 무엇인가요?",
-  target:60,
-  type:"지원동기"
-},
+  {
+    q:"우리 회사에 지원한 이유는 무엇인가요?",
+    target:60,
+    type:"지원동기"
+  },
 
-{
-  q:"본인의 가장 큰 강점은 무엇이라고 생각하나요?",
-  target:60,
-  type:"강점·성향"
-},
+  {
+    q:"본인의 가장 큰 강점은 무엇이라고 생각하나요?",
+    target:60,
+    type:"강점·성향"
+  },
 
-{
-  q:"가장 힘들었던 경험과 그것을 어떻게 극복했는지 말해주세요.",
-  target:90,
-  type:"경험"
-},
+  {
+    q:"가장 힘들었던 경험과 그것을 어떻게 극복했는지 말해주세요.",
+    target:90,
+    type:"경험질문"
+  },
 
-{
-  q:"협업 중 갈등이 생겼을 때 어떻게 해결했나요?",
-  target:90,
-  type:"경험"
-},
+  {
+    q:"협업 중 갈등이 생겼을 때 어떻게 해결했나요?",
+    target:90,
+    type:"경험질문"
+  },
 
-{
-  q:"5년 후 본인의 모습을 어떻게 그리고 있나요?",
-  target:60,
-  type:"지원동기"
-},
+  {
+    q:"5년 후 본인의 모습을 어떻게 그리고 있나요?",
+    target:60,
+    type:"지원동기"
+  },
 
-{
-  q:"실패했던 경험과 그로부터 배운 점을 말해주세요.",
-  target:90,
-  type:"경험"
-},
+  {
+    q:"실패했던 경험과 그로부터 배운 점을 말해주세요.",
+    target:90,
+    type:"경험질문"
+  },
 
-{
-  q:"본인의 단점은 무엇이며 어떻게 보완하고 있나요?",
-  target:60,
-  type:"강점·성향"
-},
+  {
+    q:"본인의 단점은 무엇이며 어떻게 보완하고 있나요?",
+    target:60,
+    type:"강점·성향"
+  },
 
-{
-  q:"이 직무에 필요한 역량이 무엇이라고 생각하나요?",
-  target:60,
-  type:"지원동기"
-},
+  {
+    q:"이 직무에 필요한 역량이 무엇이라고 생각하나요?",
+    target:60,
+    type:"지원동기"
+  },
 
-{
-  q:"본인이 주도적으로 무언가를 이끌었던 경험을 말해주세요.",
-  target:90,
-  type:"경험"
-},
+  {
+    q:"본인이 주도적으로 무언가를 이끌었던 경험을 말해주세요.",
+    target:90,
+    type:"경험질문"
+  },
 
-{
-  q:"새로운 것을 배워야 했던 상황에서 어떻게 접근했나요?",
-  target:90,
-  type:"경험"
-},
+  {
+    q:"새로운 것을 배워야 했던 상황에서 어떻게 접근했나요?",
+    target:90,
+    type:"경험질문"
+  },
 
-{
-  q:"다른 지원자와 차별화되는 점은 무엇인가요?",
-  target:60,
-  type:"강점·성향"
-},
+  {
+    q:"다른 지원자와 차별화되는 점은 무엇인가요?",
+    target:60,
+    type:"강점·성향"
+  },
 
-{
-  q:"학교에서 진행한 프로젝트 중 가장 기억에 남는 것은?",
-  target:90,
-  type:"경험"
-},
+  {
+    q:"학교에서 진행한 프로젝트 중 가장 기억에 남는 것은?",
+    target:90,
+    type:"경험질문"
+  },
 
-{
-  q:"예상과 다른 결과가 나왔을 때 어떻게 대응하나요?",
-  target:90,
-  type:"경험"
-},
+  {
+    q:"예상과 다른 결과가 나왔을 때 어떻게 대응하나요?",
+    target:90,
+    type:"경험질문"
+  },
 
-{
-  q:"본인이 생각하는 좋은 팀워크란 무엇인가요?",
-  target:60,
-  type:"강점·성향"
-},
+  {
+    q:"본인이 생각하는 좋은 팀워크란 무엇인가요?",
+    target:60,
+    type:"강점·성향"
+  },
 
-{
-  q:"입사 후 가장 먼저 하고 싶은 일은 무엇인가요?",
-  target:60,
-  type:"지원동기"
-},
+  {
+    q:"입사 후 가장 먼저 하고 싶은 일은 무엇인가요?",
+    target:60,
+    type:"지원동기"
+  },
 
-{
-  q:"스트레스를 받을 때 어떻게 관리하나요?",
-  target:60,
-  type:"강점·성향"
-},
+  {
+    q:"스트레스를 받을 때 어떻게 관리하나요?",
+    target:60,
+    type:"강점·성향"
+  },
 
-{
-  q:"우리 회사에 대해 알고 있는 것을 말해주세요.",
-  target:60,
-  type:"지원동기"
-},
+  {
+    q:"우리 회사에 대해 알고 있는 것을 말해주세요.",
+    target:60,
+    type:"지원동기"
+  },
 
-{
-  q:"본인을 한 문장으로 표현한다면?",
-  target:30,
-  type:"단답"
-},
+  {
+    q:"본인을 한 문장으로 표현한다면?",
+    target:30,
+    type:"단답"
+  },
 
-{
-  q:"마지막으로 하고 싶은 말이 있나요?",
-  target:30,
-  type:"단답"
-}
+  {
+    q:"마지막으로 하고 싶은 말이 있나요?",
+    target:30,
+    type:"단답"
+  }
 
 ];
 
+
+/* ===============================
+   변수
+================================ */
 
 let qIndex = 0;
 
 let records = {};
 
 let audioCtx = null;
-
 let analyser = null;
-
 let micStream = null;
-
 let dataArr = null;
 
-let state = 'idle';
+let state = "idle";
 
 let startTime = 0;
-
 let lastVoice = 0;
-
 let raf = null;
 
 let recognition = null;
+let transcript = "";
 
-let transcript = '';
-
-let feedbackGuideShown = false;
-
+let feedbackNoticeShown = false;
 
 const SILENCE_MS = 2000;
-
 const VOICE_THRESHOLD = 0.04;
-
 const TOL = 10;
 
 
-const el =
-  id =>
-  document.getElementById(id);
+/* ===============================
+   요소
+================================ */
 
+const questionEl = document.getElementById("question");
+const qcountEl = document.getElementById("qcount");
 
-const timerEl = el('timer');
+const targetTxtEl = document.getElementById("targetTxt");
 
-const hintEl = el('hint');
+const gaugeEl = document.getElementById("gauge");
+const bandEl = document.getElementById("band");
+const nowEl = document.getElementById("now");
+const gaugeMaxEl = document.getElementById("gaugeMax");
 
-const mainBtn = el('mainBtn');
+const dot = document.getElementById("dot");
+const micStatus = document.getElementById("micStatus");
+const meter = document.getElementById("meter");
 
-const nextBtn = el('nextBtn');
+const timerEl = document.getElementById("timer");
+const hintEl = document.getElementById("hint");
 
-const dot = el('dot');
+const mainBtn = document.getElementById("mainBtn");
+const nextBtn = document.getElementById("nextBtn");
 
-const micStatus = el('micStatus');
-
-const meter = el('meter');
-
-const resultEl = el('result');
-
-const tbody = el('tbody');
-
-const verdictEl = el('verdict');
-
-const questionEl = el('question');
-
-const qcountEl = el('qcount');
-
-const qtypeEl = el('qtype');
-
-const targetTxtEl = el('targetTxt');
-
-const gaugeEl = el('gauge');
-
-const bandEl = el('band');
-
-const nowEl = el('now');
-
-const gaugeMaxEl = el('gaugeMax');
+const resultEl = document.getElementById("result");
+const tbody = document.getElementById("tbody");
+const verdictEl = document.getElementById("verdict");
 
 
 function cur(){
-
   return QUESTIONS[qIndex];
-
 }
 
 
-function gaugeMax(){
-
-  return Math.round(
-    cur().target * 2
-  );
-
+function getGaugeMax(){
+  return cur().target * 2;
 }
 
+
+/* ===============================
+   질문 화면
+================================ */
 
 function renderQuestion(){
 
-  const c =
-    cur();
+  const c = cur();
 
-
-  questionEl.textContent =
-    c.q;
-
+  questionEl.textContent = c.q;
 
   qcountEl.textContent =
     `질문 ${qIndex + 1} / ${QUESTIONS.length}`;
 
-
-  qtypeEl.textContent =
-    c.type;
-
-
   targetTxtEl.textContent =
     `${c.target}초`;
 
+  const max = getGaugeMax();
 
   gaugeMaxEl.textContent =
-    `${gaugeMax()}초`;
-
-
-  const max =
-    gaugeMax();
-
+    `${max}초`;
 
   bandEl.style.left =
-    (
-      Math.max(
-        0,
-        c.target - TOL
-      )
-      /
-      max
-      *
-      100
-    )
-    +
-    '%';
-
+    ((c.target - TOL) / max * 100) + "%";
 
   bandEl.style.width =
-    (
-      TOL * 2
-      /
-      max
-      *
-      100
-    )
-    +
-    '%';
+    ((TOL * 2) / max * 100) + "%";
 
+  nowEl.style.width = "0%";
 
-  nowEl.style.width =
-    '0%';
+  gaugeEl.classList.remove("over");
 
-
-  gaugeEl.classList.remove(
-    'over'
-  );
-
-
-  if(
-    qIndex
-    ===
-    QUESTIONS.length - 1
-  ){
-
-    nextBtn.textContent =
-      '테스트 완료';
-
+  if(qIndex === QUESTIONS.length - 1){
+    nextBtn.textContent = "테스트 완료";
   }else{
-
-    nextBtn.textContent =
-      '다음 질문';
-
+    nextBtn.textContent = "다음 질문";
   }
 
 }
 
 
-
 function updateGauge(sec){
 
-  const max =
-    gaugeMax();
-
+  const max = getGaugeMax();
 
   nowEl.style.width =
-    Math.min(
-      100,
-      sec / max * 100
-    )
-    +
-    '%';
-
+    Math.min(100, sec / max * 100) + "%";
 
   gaugeEl.classList.toggle(
-
-    'over',
-
-    sec
-    >
-    cur().target
-    +
-    TOL
-
+    "over",
+    sec > cur().target + TOL
   );
 
 }
 
 
+function fmt(sec){
 
-function fmt(s){
+  const whole = Math.floor(sec);
+  const decimal = Math.floor((sec % 1) * 10);
 
-  return `${Math.floor(s)}<small>.${Math.floor((s % 1) * 10)}초</small>`;
+  return `${whole}<small>.${decimal}초</small>`;
 
 }
 
 
+/* ===============================
+   마이크
+================================ */
 
 async function initMic(){
 
@@ -1096,105 +771,66 @@ async function initMic(){
         audio:true
       });
 
-
     audioCtx =
       new (
-        window.AudioContext
-        ||
+        window.AudioContext ||
         window.webkitAudioContext
       )();
 
-
-    const src =
-      audioCtx.createMediaStreamSource(
-        micStream
-      );
-
+    const source =
+      audioCtx.createMediaStreamSource(micStream);
 
     analyser =
       audioCtx.createAnalyser();
 
+    analyser.fftSize = 512;
 
-    analyser.fftSize =
-      512;
-
-
-    src.connect(
-      analyser
-    );
-
+    source.connect(analyser);
 
     dataArr =
       new Uint8Array(
         analyser.frequencyBinCount
       );
 
-
     micStatus.textContent =
-      '마이크 준비 완료';
+      "마이크 준비 완료";
 
 
     const SR =
-      window.SpeechRecognition
-      ||
+      window.SpeechRecognition ||
       window.webkitSpeechRecognition;
 
 
     if(SR){
 
-      recognition =
-        new SR();
+      recognition = new SR();
 
+      recognition.lang = "ko-KR";
+      recognition.continuous = true;
+      recognition.interimResults = true;
 
-      recognition.lang =
-        'ko-KR';
+      recognition.onresult = e => {
 
+        let text = "";
 
-      recognition.continuous =
-        true;
+        for(let i=0; i<e.results.length; i++){
+          text += e.results[i][0].transcript + " ";
+        }
 
+        transcript = text.trim();
 
-      recognition.interimResults =
-        true;
-
-
-      recognition.onresult =
-        e => {
-
-
-          let t = '';
-
-
-          for(
-            let i = 0;
-            i < e.results.length;
-            i++
-          ){
-
-            t +=
-              e.results[i][0].transcript
-              +
-              ' ';
-
-          }
-
-
-          transcript =
-            t.trim();
-
-        };
+      };
 
     }
 
-
     return true;
 
+  }catch(error){
 
-  }catch(err){
+    console.error(error);
 
     micStatus.textContent =
-      '마이크 권한이 필요합니다';
-
+      "마이크 권한이 필요합니다";
 
     return false;
 
@@ -1203,109 +839,68 @@ async function initMic(){
 }
 
 
-
 function rms(){
 
-  analyser.getByteTimeDomainData(
-    dataArr
-  );
+  analyser.getByteTimeDomainData(dataArr);
 
+  let sum = 0;
 
-  let sum =
-    0;
-
-
-  for(
-    let i = 0;
-    i < dataArr.length;
-    i++
-  ){
+  for(let i=0; i<dataArr.length; i++){
 
     const v =
-      (
-        dataArr[i]
-        -
-        128
-      )
-      /
-      128;
+      (dataArr[i] - 128) / 128;
 
-
-    sum +=
-      v * v;
+    sum += v * v;
 
   }
 
-
   return Math.sqrt(
-    sum
-    /
-    dataArr.length
+    sum / dataArr.length
   );
 
 }
 
 
+/* ===============================
+   음성 감지
+================================ */
 
 function loop(){
 
-  const level =
-    rms();
-
+  const level = rms();
 
   meter.style.width =
-    Math.min(
-      100,
-      level * 400
-    )
-    +
-    '%';
-
+    Math.min(100, level * 400) + "%";
 
   const now =
     performance.now();
 
 
   if(
-    state === 'listening'
-    &&
+    state === "listening" &&
     level > VOICE_THRESHOLD
   ){
 
-    state =
-      'speaking';
+    state = "speaking";
 
+    startTime = now;
+    lastVoice = now;
 
-    startTime =
-      now;
-
-
-    lastVoice =
-      now;
-
-
-    dot.className =
-      'dot live';
-
+    dot.className = "dot live";
 
     micStatus.textContent =
-      '답변 감지 중…';
-
+      "답변 감지 중…";
 
     hintEl.textContent =
-      '말을 멈추면 자동으로 종료됩니다.';
+      "말을 멈추면 자동으로 종료됩니다.";
 
 
     if(recognition){
 
-      transcript =
-        '';
-
+      transcript = "";
 
       try{
-
         recognition.start();
-
       }catch(e){}
 
     }
@@ -1313,59 +908,33 @@ function loop(){
   }
 
 
-  if(
-    state === 'speaking'
-  ){
+  if(state === "speaking"){
 
-    if(
-      level
-      >
-      VOICE_THRESHOLD
-    ){
-
-      lastVoice =
-        now;
-
+    if(level > VOICE_THRESHOLD){
+      lastVoice = now;
     }
 
-
     const elapsed =
-      (
-        now
-        -
-        startTime
-      )
-      /
-      1000;
-
+      (now - startTime) / 1000;
 
     timerEl.innerHTML =
-      fmt(
-        elapsed
-      );
+      fmt(elapsed);
 
-
-    updateGauge(
-      elapsed
-    );
+    updateGauge(elapsed);
 
 
     if(
-      now
-      -
-      lastVoice
-      >
+      now - lastVoice >
       SILENCE_MS
     ){
 
-      finish(
+      const finalSec =
+        Math.max(
+          0,
+          elapsed - SILENCE_MS / 1000
+        );
 
-        elapsed
-        -
-        SILENCE_MS / 1000
-
-      );
-
+      finish(finalSec);
 
       return;
 
@@ -1375,168 +944,123 @@ function loop(){
 
 
   raf =
-    requestAnimationFrame(
-      loop
-    );
+    requestAnimationFrame(loop);
 
 }
 
 
+/* ===============================
+   답변 시작
+================================ */
 
 mainBtn.addEventListener(
-  'click',
-
+  "click",
   async () => {
 
-
     if(
-      state === 'idle'
-      ||
-      state === 'done'
+      state !== "idle" &&
+      state !== "done"
     ){
-
-      if(!audioCtx){
-
-        const ok =
-          await initMic();
+      return;
+    }
 
 
-        if(!ok){
+    if(!audioCtx){
 
-          return;
+      const ok =
+        await initMic();
 
-        }
-
+      if(!ok){
+        return;
       }
-
-
-      if(
-        audioCtx.state
-        ===
-        'suspended'
-      ){
-
-        await audioCtx.resume();
-
-      }
-
-
-      state =
-        'listening';
-
-
-      transcript =
-        '';
-
-
-      timerEl.innerHTML =
-        '0<small>.0초</small>';
-
-
-      dot.className =
-        'dot live';
-
-
-      micStatus.textContent =
-        '말씀을 시작하면 측정이 시작됩니다';
-
-
-      hintEl.textContent =
-        '지금부터 소리 내어 답해 보세요.';
-
-
-      mainBtn.textContent =
-        '측정 중…';
-
-
-      mainBtn.disabled =
-        true;
-
-
-      nextBtn.disabled =
-        true;
-
-
-      loop();
 
     }
 
-  }
 
+    if(audioCtx.state === "suspended"){
+      await audioCtx.resume();
+    }
+
+
+    state = "listening";
+
+    transcript = "";
+
+    timerEl.innerHTML =
+      "0<small>.0초</small>";
+
+    dot.className =
+      "dot live";
+
+    micStatus.textContent =
+      "말씀을 시작하면 측정이 시작됩니다";
+
+    hintEl.textContent =
+      "지금부터 소리 내어 답해 보세요.";
+
+    mainBtn.textContent =
+      "측정 중…";
+
+    mainBtn.disabled = true;
+    nextBtn.disabled = true;
+
+    loop();
+
+  }
 );
 
 
+/* ===============================
+   답변 종료
+================================ */
 
 function finish(seconds){
 
-  cancelAnimationFrame(
-    raf
-  );
-
+  cancelAnimationFrame(raf);
 
   if(recognition){
 
     try{
-
       recognition.stop();
-
     }catch(e){}
 
   }
 
+  state = "done";
 
-  state =
-    'done';
-
-
-  dot.className =
-    'dot';
-
+  dot.className = "dot";
 
   micStatus.textContent =
-    '측정 완료';
+    "측정 완료";
 
-
-  meter.style.width =
-    '0%';
-
+  meter.style.width = "0%";
 
   mainBtn.textContent =
-    '다시 답하기';
+    "다시 답하기";
 
-
-  mainBtn.disabled =
-    false;
-
-
-  nextBtn.disabled =
-    false;
-
+  mainBtn.disabled = false;
+  nextBtn.disabled = false;
 
   hintEl.textContent =
-    '방금 답변을 확인하고 다시 답해 보세요.';
-
+    "방금 답변을 확인하고 다시 답해 보세요.";
 
   timerEl.innerHTML =
-    fmt(
-      seconds
-    );
+    fmt(seconds);
+
+  updateGauge(seconds);
 
 
-  updateGauge(
-    seconds
-  );
+  let words = null;
 
+  if(transcript){
 
-  let words =
-    transcript
-    ?
-    transcript
-      .split(/\s+/)
-      .filter(Boolean)
-      .length
-    :
-    null;
+    words =
+      transcript
+        .split(/\s+/)
+        .filter(Boolean)
+        .length;
+
+  }
 
 
   saveRecord(
@@ -1544,19 +1068,35 @@ function finish(seconds){
     words
   );
 
+
+  /* 첫 번째 질문 종료 후 딱 한 번 안내 */
+
+  if(
+    qIndex === 0 &&
+    !feedbackNoticeShown
+  ){
+
+    feedbackNoticeShown = true;
+
+    alert(
+      "한줄평은 마지막 질문을 넘기면 입력할 수 있습니다."
+    );
+
+  }
+
 }
 
 
+/* ===============================
+   다음 질문
+================================ */
 
 nextBtn.addEventListener(
-  'click',
-
+  "click",
   () => {
 
-
     if(
-      qIndex
-      ===
+      qIndex ===
       QUESTIONS.length - 1
     ){
 
@@ -1569,59 +1109,49 @@ nextBtn.addEventListener(
 
     qIndex++;
 
-
     renderQuestion();
 
+    state = "idle";
 
     timerEl.innerHTML =
-      '0<small>.0초</small>';
-
-
-    state =
-      'idle';
-
+      "0<small>.0초</small>";
 
     mainBtn.textContent =
-      '답변 시작';
-
+      "답변 시작";
 
     micStatus.textContent =
       audioCtx
-      ?
-      '마이크 준비 완료'
-      :
-      '마이크 준비 안 됨';
-
+      ? "마이크 준비 완료"
+      : "마이크 준비 안 됨";
 
     hintEl.textContent =
-      '준비되면 답변 시작을 누르세요.';
-
+      "준비되면 답변 시작을 누르세요.";
 
     renderTable();
 
   }
-
 );
 
 
+/* ===============================
+   기록
+================================ */
 
-function saveRecord(
-  sec,
-  words
-){
+function saveRecord(sec, words){
 
-  if(
-    !records[qIndex]
-  ){
-
-    records[qIndex] =
-      [];
-
+  if(!records[qIndex]){
+    records[qIndex] = [];
   }
 
-
-  const t =
+  const target =
     cur().target;
+
+  const wpm =
+    words !== null && sec > 0
+    ? Math.round(
+        words / (sec / 60)
+      )
+    : null;
 
 
   records[qIndex].push({
@@ -1630,295 +1160,172 @@ function saveRecord(
 
     words:words,
 
-    wpm:
-      (
-        words !== null
-        &&
-        sec > 0
-      )
-      ?
-      Math.round(
-        words
-        /
-        (
-          sec / 60
-        )
-      )
-      :
-      null,
+    wpm:wpm,
 
-    target:t,
+    target:target,
 
-    diff:
-      sec - t,
+    diff:sec - target,
 
     landed:
-      Math.abs(
-        sec - t
-      )
-      <=
-      TOL
+      Math.abs(sec - target) <= TOL
 
   });
 
 
   renderTable();
 
-
-  /* 질문 1을 처음 완료하면 한줄평 안내 등장 */
-
-  if (
-  qIndex === 0 &&
-  !feedbackGuideShown
-) {
-  feedbackGuideShown = true;
-
-  const feedbackBox =
-    document.getElementById('feedbackBox');
-
-  const feedbackGuide =
-    document.getElementById('feedbackGuide');
-
-  const feedbackForm =
-    document.getElementById('feedbackForm');
-
-  feedbackBox.style.display = 'block';
-  feedbackGuide.style.display = 'block';
-  feedbackForm.style.display = 'none';
-
-  /* 첫 질문 종료 후 한줄평 안내가 보이도록 이동 */
-  setTimeout(() => {
-    feedbackBox.scrollIntoView({
-      behavior: 'smooth',
-      block: 'center'
-    });
-  }, 300);
 }
 
 
+/* ===============================
+   결과표
+================================ */
 
 function renderTable(){
 
   const list =
-    records[qIndex]
-    ||
-    [];
+    records[qIndex] || [];
 
 
-  if(
-    list.length === 0
-  ){
+  if(list.length === 0){
 
-    resultEl.classList.remove(
-      'show'
-    );
-
+    resultEl.classList.remove("show");
 
     return;
 
   }
 
 
-  resultEl.classList.add(
-    'show'
-  );
+  resultEl.classList.add("show");
+
+  tbody.innerHTML = "";
 
 
-  tbody.innerHTML =
-    '';
+  list.forEach((r,i) => {
+
+    const tr =
+      document.createElement("tr");
 
 
-  list.forEach(
-    (r,i) => {
+    if(i === list.length - 1){
+      tr.className = "latest";
+    }
 
 
-      const tr =
-        document.createElement(
-          'tr'
-        );
+    const wordText =
+      r.words === null
+      ? "—"
+      : `${r.words}`;
 
 
-      if(
-        i === list.length - 1
-      ){
-
-        tr.className =
-          'latest';
-
-      }
+    const speedText =
+      r.wpm === null
+      ? "—"
+      : r.wpm;
 
 
-      const w =
-        r.words === null
-        ?
-        '—'
-        :
-        `${r.words}어절`;
+    let targetText;
 
 
-      const sp =
-        r.wpm === null
-        ?
-        '—'
-        :
-        r.wpm;
+    if(r.landed){
 
+      targetText =
+        `<span class="landed">안착</span>`;
+
+    }else{
 
       const sign =
-        r.diff >= 0
-        ?
-        '+'
-        :
-        '';
+        r.diff > 0 ? "+" : "";
 
-
-      const dv =
-        r.landed
-        ?
-        `<span class="landed">안착</span>`
-        :
+      targetText =
         `${sign}${r.diff.toFixed(0)}초`;
-
-
-      tr.innerHTML =
-        `<td>${i + 1}회차</td>
-         <td>${r.sec.toFixed(0)}초</td>
-         <td>${dv}</td>
-         <td>${w}</td>
-         <td>${sp}</td>`;
-
-
-      tbody.appendChild(
-        tr
-      );
 
     }
 
-  );
+
+    tr.innerHTML = `
+      <td>${i + 1}회차</td>
+      <td>${r.sec.toFixed(0)}초</td>
+      <td>${targetText}</td>
+      <td>${wordText}</td>
+      <td>${speedText}</td>
+    `;
+
+
+    tbody.appendChild(tr);
+
+  });
 
 
   const last =
-    list[
-      list.length - 1
-    ];
+    list[list.length - 1];
 
 
-  const t =
-    last.target;
+  let head = "";
 
 
-  let head;
-
-
-  if(
-    last.landed
-  ){
+  if(last.landed){
 
     head =
-      `목표 ${t}초에 <b>안착했습니다.</b>
-       <span class="landed">안착</span>`;
+      `목표 ${last.target}초에
+      <span class="landed">안착했습니다.</span>`;
 
-  }else if(
-    last.diff > 0
-  ){
+  }else if(last.diff > 0){
 
     head =
-      `목표 ${t}초보다
-       <span class="warn">${last.diff.toFixed(0)}초 깁니다.</span>
-       핵심만 남기고 다시 답해 보세요.`;
+      `목표 ${last.target}초보다
+      <span class="warn">
+      ${last.diff.toFixed(0)}초 깁니다.
+      </span>`;
 
   }else{
 
     head =
-      `목표 ${t}초보다
-       <span class="warn">${Math.abs(last.diff).toFixed(0)}초 짧습니다.</span>
-       근거나 사례를 한 가지 더 붙여 보세요.`;
+      `목표 ${last.target}초보다
+      <span class="warn">
+      ${Math.abs(last.diff).toFixed(0)}초 짧습니다.
+      </span>`;
 
   }
 
 
-  let body =
-    '';
+  let body = "";
 
 
-  if(
-    list.length >= 2
-  ){
+  if(list.length >= 2){
 
-    const a =
+    const first =
       list[0];
 
-
-    const b =
-      last;
-
-
     const timeDrop =
-      a.sec
-      -
-      b.sec;
+      first.sec - last.sec;
 
-
-    const pct =
-      timeDrop
-      /
-      a.sec
-      *
-      100;
-
-
-    const firstGap =
-      Math.abs(
-        a.diff
-      );
-
-
-    const lastGap =
-      Math.abs(
-        b.diff
-      );
+    const percent =
+      timeDrop / first.sec * 100;
 
 
     if(
-      a.words === null
-      ||
-      b.words === null
-    ){
-
-      body =
-        `<br>
-        첫 답변 대비 목표와의 차이가
-        ${firstGap.toFixed(0)}초 →
-        ${lastGap.toFixed(0)}초로 바뀌었습니다.`;
-
-    }else if(
+      first.words !== null &&
+      last.words !== null &&
       timeDrop > 0.5
     ){
 
-      const wpmUp =
-        b.wpm
-        -
-        a.wpm;
-
+      const speedUp =
+        last.wpm - first.wpm;
 
       const wordDrop =
-        a.words
-        -
-        b.words;
+        first.words - last.words;
 
 
       if(
-        wpmUp > 25
-        &&
-        wordDrop
-        <
-        a.words * 0.1
+        speedUp > 25 &&
+        wordDrop < first.words * 0.1
       ){
 
         body =
           `<br>
           시간은 ${timeDrop.toFixed(0)}초
-          (${pct.toFixed(0)}%) 줄었지만
+          (${percent.toFixed(0)}%) 줄었지만
           말 속도가 크게 빨라졌습니다.
           <span class="flag">속도만 빨라짐</span>`;
 
@@ -1926,63 +1333,46 @@ function renderTable(){
 
         body =
           `<br>
-          시간이 ${timeDrop.toFixed(0)}초
-          (${pct.toFixed(0)}%) 줄었고
-          말한 분량도 함께 줄었습니다.
+          시간은 ${timeDrop.toFixed(0)}초
+          (${percent.toFixed(0)}%) 줄었습니다.
           <span class="flag ok">내용 압축</span>`;
 
       }
-
-    }else{
-
-      body =
-        `<br>
-        목표와의 차이는
-        ${firstGap.toFixed(0)}초 →
-        ${lastGap.toFixed(0)}초입니다.`;
 
     }
 
   }else{
 
     body =
-      `<br>
-      한 번 더 답해 목표에 얼마나 가까워지는지 확인해 보세요.`;
+      "<br>한 번 더 답해 목표에 가까워지는지 확인해 보세요.";
 
   }
 
 
   verdictEl.innerHTML =
-    head
-    +
-    body;
+    head + body;
 
 }
 
 
+/* 첫 화면 */
 
 renderQuestion();
 
 </script>
 
 
-
-<!-- =========================
-     Supabase 연결
-========================= -->
+<!-- Supabase -->
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-
 <script>
 
-
 const SUPABASE_URL =
-  'https://cywjewdamlydpjoqfiac.supabase.co';
-
+  "https://cywjewdamlydpjoqfiac.supabase.co";
 
 const SUPABASE_KEY =
-  'sb_publishable_yJkK_e1iHJsdmHVtoCXekg_kE0bq92U';
+  "sb_publishable_yJkK_e1iHJsdmHVtoCXekg_kE0bq92U";
 
 
 const supabaseClient =
@@ -1992,63 +1382,53 @@ const supabaseClient =
   );
 
 
-
-/* 참가자 ID */
+/* ===============================
+   참가자 ID
+================================ */
 
 let participantId =
   sessionStorage.getItem(
-    'participant_id'
+    "participant_id"
   );
 
 
-if(
-  !participantId
-){
+if(!participantId){
 
   participantId =
     prompt(
-      '참여자 번호를 입력해주세요.\n예: P1'
+      "참여자 번호를 입력해주세요.\n예: P1"
     );
 
 
-  if(
-    !participantId
-  ){
-
-    participantId =
-      'TEST';
-
+  if(!participantId){
+    participantId = "TEST";
   }
 
 
   participantId =
     participantId
-    .trim()
-    .toUpperCase();
+      .trim()
+      .toUpperCase();
 
 
   sessionStorage.setItem(
-    'participant_id',
+    "participant_id",
     participantId
   );
 
 }
 
 
-
-/* =========================
-   답변 로그 Supabase 저장
-========================= */
+/* ===============================
+   답변 기록을 Supabase에도 저장
+================================ */
 
 const originalSaveRecord =
   saveRecord;
 
 
 saveRecord =
-  function(
-    sec,
-    words
-  ){
+  function(sec, words){
 
     originalSaveRecord(
       sec,
@@ -2064,46 +1444,6 @@ saveRecord =
       records[qIndex].length;
 
 
-    let questionType =
-      '기타';
-
-
-    if(
-      currentQuestion.target
-      ===
-      60
-    ){
-
-      questionType =
-        '자기소개';
-
-    }
-
-
-    if(
-      currentQuestion.target
-      ===
-      90
-    ){
-
-      questionType =
-        '경험질문';
-
-    }
-
-
-    if(
-      currentQuestion.target
-      ===
-      30
-    ){
-
-      questionType =
-        '단답';
-
-    }
-
-
     const logData = {
 
       participant_id:
@@ -2116,7 +1456,7 @@ saveRecord =
         `Q${qIndex + 1}`,
 
       question_type:
-        questionType,
+        currentQuestion.type,
 
       attempt_no:
         attemptNo,
@@ -2130,110 +1470,72 @@ saveRecord =
         currentQuestion.target,
 
       word_count:
-        words === null
-        ?
-        null
-        :
         words
 
     };
 
 
     supabaseClient
+      .from("answer_logs")
+      .insert(logData)
+      .then(({error}) => {
 
-      .from(
-        'answer_logs'
-      )
+        if(error){
 
-      .insert(
-        logData
-      )
+          console.error(
+            "Supabase 저장 실패:",
+            error
+          );
 
-      .then(
-        ({error}) => {
+        }else{
 
-
-          if(error){
-
-            console.error(
-              '❌ Supabase 저장 실패:',
-              error
-            );
-
-          }else{
-
-            console.log(
-              '✅ Supabase 저장 성공:',
-              logData
-            );
-
-          }
+          console.log(
+            "Supabase 저장 성공:",
+            logData
+          );
 
         }
 
-      );
+      });
 
   };
 
 
-
-/* =========================
+/* ===============================
    마지막 질문 완료
-========================= */
+================================ */
 
 function showFeedback(){
 
-  const box =
-    document.getElementById(
-      'feedbackBox'
-    );
+  document.getElementById(
+    "feedbackBox"
+  ).style.display =
+    "block";
 
 
-  const guide =
-    document.getElementById(
-      'feedbackGuide'
-    );
+  mainBtn.disabled = true;
+  nextBtn.disabled = true;
 
 
-  const form =
-    document.getElementById(
-      'feedbackForm'
-    );
-
-
-  box.style.display =
-    'block';
-
-
-  guide.style.display =
-    'none';
-
-
-  form.style.display =
-    'block';
-
-
-  box.scrollIntoView({
-
-    behavior:'smooth',
-
-    block:'center'
-
+  document.getElementById(
+    "feedbackBox"
+  ).scrollIntoView({
+    behavior:"smooth",
+    block:"center"
   });
 
 }
 
 
-
-/* =========================
+/* ===============================
    한줄평 제출
-========================= */
+================================ */
 
 async function submitFeedback(){
 
   const input =
     document.getElementById(
-      'feedbackInput'
+      "feedbackInput"
     );
 
 
@@ -2241,57 +1543,44 @@ async function submitFeedback(){
     input.value.trim();
 
 
-  if(
-    !feedback
-  ){
+  if(!feedback){
 
     alert(
-      '한줄평을 입력하거나 건너뛰기를 눌러주세요!'
+      "한줄평을 입력하거나 건너뛰기를 눌러주세요."
     );
-
 
     return;
 
   }
 
 
-  const {
-    error
-  } =
+  const { error } =
     await supabaseClient
+      .from("feedback_logs")
+      .insert({
 
-    .from(
-      'feedback_logs'
-    )
+        participant_id:
+          participantId,
 
-    .insert({
+        mvp_version:
+          3,
 
-      participant_id:
-        participantId,
+        feedback:
+          feedback
 
-      mvp_version:
-        3,
-
-      feedback:
-        feedback
-
-    });
+      });
 
 
-  if(
-    error
-  ){
+  if(error){
 
     console.error(
-      '한줄평 저장 실패:',
+      "한줄평 저장 실패:",
       error
     );
 
-
     alert(
-      '한줄평 저장에 실패했습니다.'
+      "저장에 실패했습니다."
     );
-
 
     return;
 
@@ -2303,10 +1592,9 @@ async function submitFeedback(){
 }
 
 
-
-/* =========================
-   한줄평 건너뛰기
-========================= */
+/* ===============================
+   건너뛰기
+================================ */
 
 function skipFeedback(){
 
@@ -2315,29 +1603,38 @@ function skipFeedback(){
 }
 
 
-
-/* =========================
+/* ===============================
    테스트 완료
-========================= */
+================================ */
 
 function finishFeedback(){
 
-  document.getElementById(
-    'feedbackForm'
+  document.querySelector(
+    ".feedback-desc"
   ).style.display =
-    'none';
+    "none";
 
 
   document.getElementById(
-    'feedbackDone'
+    "feedbackInput"
   ).style.display =
-    'block';
+    "none";
+
+
+  document.querySelector(
+    ".feedback-buttons"
+  ).style.display =
+    "none";
+
+
+  document.getElementById(
+    "feedbackDone"
+  ).style.display =
+    "block";
 
 }
 
 </script>
 
-
 </body>
-
 </html>
