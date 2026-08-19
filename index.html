@@ -1667,35 +1667,32 @@ function saveRecord(
 
   /* 질문 1을 처음 완료하면 한줄평 안내 등장 */
 
-  if(
-    qIndex === 0
-    &&
-    !feedbackGuideShown
-  ){
+  if (
+  qIndex === 0 &&
+  !feedbackGuideShown
+) {
+  feedbackGuideShown = true;
 
-    feedbackGuideShown =
-      true;
+  const feedbackBox =
+    document.getElementById('feedbackBox');
 
+  const feedbackGuide =
+    document.getElementById('feedbackGuide');
 
-    document.getElementById(
-      'feedbackBox'
-    ).style.display =
-      'block';
+  const feedbackForm =
+    document.getElementById('feedbackForm');
 
+  feedbackBox.style.display = 'block';
+  feedbackGuide.style.display = 'block';
+  feedbackForm.style.display = 'none';
 
-    document.getElementById(
-      'feedbackGuide'
-    ).style.display =
-      'block';
-
-
-    document.getElementById(
-      'feedbackForm'
-    ).style.display =
-      'none';
-
-  }
-
+  /* 첫 질문 종료 후 한줄평 안내가 보이도록 이동 */
+  setTimeout(() => {
+    feedbackBox.scrollIntoView({
+      behavior: 'smooth',
+      block: 'center'
+    });
+  }, 300);
 }
 
 
